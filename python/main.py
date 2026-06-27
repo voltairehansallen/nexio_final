@@ -330,10 +330,9 @@ def log_ia():
 # ════════════════════════════════════════════════════════════
 # LANCEMENT
 # ════════════════════════════════════════════════════════════
+
 if __name__ == "__main__":
-    print("🤖 Nexio IA Server — llama-3.3-70b-versatile sur GrokCloud")
-    print("📡 http://127.0.0.1:5001")
-    print("🔗 Routes disponibles :")
-    for rule in app.url_map.iter_rules():
-        print(f"   {', '.join(rule.methods - {'HEAD','OPTIONS'}):6} {rule.rule}")
-    app.run(host="127.0.0.1", port=5001, debug=False)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port)
+    
+    
