@@ -1,0 +1,33 @@
+# Python
+python/venv/
+python/__pycache__/
+python/**/*.pyc
+
+# Logs
+python/logs/
+*.log
+
+# Variables d'environnement
+.env
+config/env.php
+python/config/ai_config.json
+
+# XAMPP
+xampp/
+*.tmp
+
+# VS Code
+.vscode/
+
+# Git
+.git/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+
+# Node (si ajouté plus tard)
+node_modules/
