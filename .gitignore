@@ -10,7 +10,6 @@ python/logs/
 # Variables d'environnement
 .env
 config/env.php
-python/config/ai_config.json
 
 # XAMPP
 xampp/
