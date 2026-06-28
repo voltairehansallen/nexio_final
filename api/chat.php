@@ -31,7 +31,7 @@ $payload = json_encode([
     'id_user'    => $uid,
 ]);
 
-$ch = curl_init('http://127.0.0.1:5001/chat');
+$ch = curl_init(PYTHON_API_URL . '/chat');
 curl_setopt_array($ch, [
     CURLOPT_POST           => true,
     CURLOPT_POSTFIELDS     => $payload,
