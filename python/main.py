@@ -46,7 +46,7 @@ DB_CONFIG = {
     "port": int(os.getenv("MYSQL_PORT", "3306")),
     "database": os.getenv("MYSQL_DATABASE", "nexio_db"),
     "user": os.getenv("MYSQL_USER", "root"),
-    "password": os.getenv("MYSQL_PASSWORD", "bLcsSvDRLwNYTXebdYLbKbyrVmqIXVNg"),
+    "password": os.getenv("MYSQL_PASSWORD", ""),
     "charset": "utf8mb4",
 }
 
@@ -105,13 +105,40 @@ def agents_status():
 @app.route("/chat", methods=["POST"])
 def chat():
     from agents.agent_chatbot import AgentChatbot
-    d = request.get_json() or {}
-    msg     = d.get("message", "")
-    session = d.get("session_id", "default")
-    uid     = d.get("id_user")
-    if not msg:
-        return jsonify({"error": "message requis"}), 400
-    return jsonify({"reply": get_agent(AgentChatbot).repondre(msg, session, uid), "status": "ok"})
+    import traceback
+
+    try:
+        d = request.get_json() or {}
+
+        msg = d.get("message", "")
+        session = d.get("session_id", "default")
+        uid = d.get("id_user")
+
+        if not msg:
+            return jsonify({
+                "status":"error",
+                "message":"message requis"
+            }),400
+
+        agent = get_agent(AgentChatbot)
+
+        rep = agent.repondre(msg, session, uid)
+
+        return jsonify({
+            "status":"ok",
+            "reply":rep
+        })
+
+    except Exception as e:
+
+        print(traceback.format_exc())
+
+        return jsonify({
+            "status":"error",
+            "type":type(e).__name__,
+            "message":str(e),
+            "trace":traceback.format_exc()
+        }),500
 
 # ── Agent 2 — Recommandations ────────────────────────────────
 @app.route("/recommander", methods=["POST"])
