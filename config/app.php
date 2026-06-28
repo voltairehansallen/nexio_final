@@ -6,8 +6,13 @@
 require_once __DIR__ . '/env.php';
 define('APP_NAME',    'Nexio S.A.');
 define('APP_VERSION', '2.0');
-define('BASE_URL',    'http://localhost/nexio_final');
+define(
+    'PYTHON_API_URL',
+    getenv('PYTHON_API_URL') ?: 'https://nexio-ai.onrender.com'
+);
 require_once __DIR__ . '/database.php';
+
+
 
 // ── Session ──────────────────────────────────────────────────
 function startSession(): void {
