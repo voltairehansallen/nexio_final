@@ -42,11 +42,12 @@ def options_handler(path):
 
 # ── Config DB (lit .env) ─────────────────────────────────────
 DB_CONFIG = {
-    "host":     os.getenv("MYSQL_HOST",     "localhost"),
+    "host": os.getenv("MYSQL_HOST","localhost"),
+    "port": int(os.getenv("MYSQL_PORT", "3306")),
     "database": os.getenv("MYSQL_DATABASE", "nexio_db"),
-    "user":     os.getenv("MYSQL_USER",     "root"),
-    "password": os.getenv("MYSQL_PASSWORD", ""),
-    "charset":  "utf8mb4",
+    "user": os.getenv("MYSQL_USER", "root"),
+    "password": os.getenv("MYSQL_PASSWORD", "bLcsSvDRLwNYTXebdYLbKbyrVmqIXVNg"),
+    "charset": "utf8mb4",
 }
 
 # ── Singleton agents ─────────────────────────────────────────

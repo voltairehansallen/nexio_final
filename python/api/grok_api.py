@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Optional
 
 
+api_key = os.getenv("GROQ_API_KEY") or config["api_key"]
 class GrokAPI:
     """
     Classe centrale de communication avec GrokCloud.
